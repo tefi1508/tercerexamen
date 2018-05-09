@@ -16,8 +16,14 @@ public class RestaurantContoller {
     String newRestaurant() {
 
 
-
-
         return "newRestaurant";
     }
+
+    @RequestMapping("/showRestaurant")
+    String showRestaurant() {
+
+
+        return "showRestaurants";
+    }
+
 }
