@@ -19,13 +19,13 @@ public class Restaurant {
     private String name;
 
     @NotNull
-    private String phone;
+    private Integer phone;
 
     @NotNull
     private String description;
 
-    @NotNull
-    private Blob photo ;
+    //@NotNull
+    private Blob photo;
 
 
 
