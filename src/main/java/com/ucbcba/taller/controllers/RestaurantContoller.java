@@ -56,4 +56,11 @@ public class RestaurantContoller {
         restaurantService.deleteRestaurant(id);
         return "redirect:/Restaurants";
     }
+
+    @RequestMapping("/editRestaurant/{id}")
+    String editPost(@PathVariable Integer id, Model model) {
+        Restaurant rest = restaurantService.getRestaurant(id);
+        model.addAttribute("rest", rest);
+        return "editRestaurant";
+    }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit</title>
+</head>
+<body>
+
+<form action="/restaurant" method="POST">
+    <input type="hidden" name="id" th:value="${rest.id}"/>
+    <textarea name="name" th:text="${rest.name}" id="name" cols="30" rows="10">
+    </textarea>
+
+    <textarea name="phone" th:text="${rest.phone}" id="phone" cols="30" rows="10">
+    </textarea>
+
+    <textarea name="description" th:text="${rest.description}" id="description" cols="30" rows="10">
+    </textarea>
+
+    <input type="submit" value="Guardar"></input>
+</form>
+
+</body>
+</html>
