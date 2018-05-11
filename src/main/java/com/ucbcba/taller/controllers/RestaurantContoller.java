@@ -4,8 +4,12 @@ package com.ucbcba.taller.controllers;
 import com.ucbcba.taller.entities.Restaurant;
 import com.ucbcba.taller.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +27,7 @@ public class RestaurantContoller {
     String save(Restaurant restaurant) {
 
         restaurantService.saveRestaurant(restaurant);
-        return "redirect:/bienvenidos";
+        return "redirect:/Restaurants";
     }
 
     @RequestMapping("/newRestaurant")
@@ -40,4 +44,16 @@ public class RestaurantContoller {
         return "showRestaurants";
     }
 
+    @RequestMapping("/showRestaurant/{id}")
+    String showRes(@PathVariable Integer id, Model model) {
+        Restaurant rest = restaurantService.getRestaurant(id);
+        model.addAttribute("rest", rest);
+        return "showRestaurant";
+    }
+
+    @RequestMapping("/deleteRestaurant/{id}")
+    String delete(@PathVariable Integer id) {
+        restaurantService.deleteRestaurant(id);
+        return "redirect:/Restaurants";
+    }
 }

@@ -7,6 +7,8 @@
 <body>
 <h1>Restaurantes</h1>
 
+<a href="/newRestaurant">Agregar</a>
+
 <table>
     <tr>
         <th>
@@ -22,6 +24,9 @@
             Descripcion
         </th>
         <th>
+            Foto
+        </th>
+        <th>
             Opciones
         </th>
     </tr>
@@ -34,6 +39,13 @@
         <td th:text="${restaurant.phone}">
         </td>
         <td th:text="${restaurant.description}">
+        </td>
+        <td th:text="${restaurant.photo}">
+        </td>
+        <td>
+            <a th:href="${'/showRestaurant/' + restaurant.id}">Ver</a>
+            <a th:href="${'/editRestaurant/' + restaurant.id}">Editar</a>
+            <a th:href="${'/deleteRestaurant/' + restaurant.id}">Eliminar</a>
         </td>
 
     </tr>
