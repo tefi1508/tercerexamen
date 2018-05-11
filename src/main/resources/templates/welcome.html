@@ -2,9 +2,132 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
+
+.jumbotron {
+    background: linear-gradient(#080708, #DD1C1A);
+    color: #ffffff;
+}
+
+.jumbotron h1 {
+    font-family: 'Sacramento', cursive;
+}
+
+.jumbotron p {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 5px;
+    word-spacing: -3.6px;
+    font-variant: small-caps;
+}
+
+.thumbnail {
+    padding: 0 0 0 0;
+    border: none;
+    border-radius: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+
+    overflow: hidden;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #D2D4C8 !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+h2{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 5px;
+    word-spacing: -3.6px;
+    font-variant: small-caps;
+}
+}
+</style>
+
 <body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">TH</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login">Iniciar sesion</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1>TengoHambre</h1>
+    <p>Restaurantes en tu ciudad</p>
+    <form class="form-inline">
+        <div class="input-group">
+            <input type="email" class="form-control" size="50" placeholder="Que quieres comer?"/>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+    </form>
+    <div class="container-fluid text-center bg-grey">
+        <h2>Favoritos</h2>
+        <div class="row text-center">
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="https://bit.ly/2I1nTWK" alt="Pizza"/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="https://bit.ly/2rC1SD8" alt="Burguer"/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="https://bit.ly/2KPE3Ap" alt="Nachos"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
