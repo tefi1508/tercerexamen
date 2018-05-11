@@ -4,7 +4,7 @@ import com.ucbcba.taller.entities.Restaurant;
 
 public interface RestaurantService {
 
-    Iterable<Restaurant> listAllRestaurant();
+    Iterable<Restaurant> listAllRestaurants();
 
     void saveRestaurant(Restaurant restaurant);
 

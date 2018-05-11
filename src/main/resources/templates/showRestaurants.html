@@ -2,16 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <title>Restaurantes</title>
 </head>
 <body>
+<h1>Restaurantes</h1>
 
-<h1>Restaurant</h1>
-<!--<b>Foto:</b> <img th:src=" "/>-->
-<!--<b>Nombre:</b> <p th:text="${Restaurant.name}"></p>-->
-<!--<b>Descripcion:</b> <p th:text="${Restaurant.description}"></p>-->
-<!--<b>Telefono:</b> <p th:text="${Restaurant.phone}"></p>-->
-<!--<b>Categoria:</b> <p th:text=" "></p>-->
+<table>
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Opciones
+        </th>
+    </tr>
+
+    <tr th:each="restaurant : ${restList}">
+        <td th:text="${restaurant.id}">
+        </td>
+        <td th:text="${restaurant.name}">
+        </td>
+        <td th:text="${restaurant.phone}">
+        </td>
+        <td th:text="${restaurant.description}">
+        </td>
+
+    </tr>
+
+
+</table>
 
 </body>
 </html>
