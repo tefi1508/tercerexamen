@@ -1,6 +1,7 @@
 package com.ucbcba.taller.entities;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Set;
 
 /**
@@ -14,6 +15,9 @@ public class User {
     private String username;
     private String password;
     private String passwordConfirm;
+    private String name;
+    private String lastName;
+    private Blob photo;
     private Set<Role> roles;
 
     @Id
@@ -59,5 +63,29 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Blob getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Blob photo) {
+        this.photo = photo;
     }
 }

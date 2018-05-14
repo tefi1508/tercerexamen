@@ -5,33 +5,39 @@
     <title>Edit</title>
 </head>
 <body>
-
+    <h1> Editar Restaurante</h1>
+    <br/>
 <form action="/restaurant" method="POST">
     <input type="hidden" name="id" th:value="${rest.id}"/>
-    <textarea name="name" th:text="${rest.name}" id="name" cols="30" rows="10">
+    <p>Ingrese nuevo nombre de restaurante:</p>
+    <textarea name="name" th:text="${rest.name}" id="name" cols="30" rows="3">
     </textarea>
-
-    <textarea name="phone" th:text="${rest.phone}" id="phone" cols="30" rows="10">
+    <br/>
+    <p>Ingrese nuevo telefono de restaurante:</p>
+    <textarea name="phone" th:text="${rest.phone}" id="phone" cols="30" rows="3">
     </textarea>
-
-    <textarea name="description" th:text="${rest.description}" id="description" cols="30" rows="10">
+        <br/>
+    <p>Ingrese nueva descripción de restaurante:</p>
+    <textarea name="description" th:text="${rest.description}" id="description" cols="30" rows="5">
     </textarea>
-
-
+    <br/>
+    <p>Seleccione tipo:</p>
     <select name="category" id="category">
         <option th:each="category : ${categories}"
                 th:value="${category.id}"
                 th:text="${category.nombre}"
                 th:selected="(${category.id} == ${rest.category.id})"></option>
     </select>
-
+    <br/>
+    <p>Seleccione ciudad:</p>
     <select name="city" id="city">
         <option th:each="city : ${cities}"
                 th:value="${city.id}"
                 th:text="${city.nombre}"
                 th:selected="(${city.id} == ${rest.city.id})"></option>
     </select>
-
+    <br/>
+    <br/>
     <input type="submit" value="Guardar"></input>
 </form>
 

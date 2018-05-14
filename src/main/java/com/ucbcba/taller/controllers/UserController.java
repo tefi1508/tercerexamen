@@ -33,10 +33,10 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-        ///userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registration";
         }
+
         userService.save(user);
         securityService.autologin(user.getUsername(), user.getPasswordConfirm());
         return "redirect:/bienvenidos";
