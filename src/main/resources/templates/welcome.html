@@ -5,6 +5,8 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -37,7 +39,7 @@
 
 .thumbnail img {
     width: 100%;
-    height: 100%;
+    min-height:100%;
     margin-bottom: 10px;
 }
 
@@ -45,6 +47,7 @@
     margin-bottom: 0;
     z-index: 9999;
     border: 0;
+    font-family: 'Julius Sans One', sans-serif;
     font-size: 12px !important;
     line-height: 1.42857143 !important;
     letter-spacing: 4px;
@@ -68,14 +71,75 @@
     color: #fff !important;
 }
 
+.input-group{
+    margin-top:3%;
+}
+
 h2{
+    margin-top:3%;
+    margin-bottom:3%;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 20px;
     letter-spacing: 5px;
     word-spacing: -3.6px;
     font-variant: small-caps;
 }
+
+.image {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.thumbnail:hover .image {
+  opacity: 0.6;
+}
+
+.thumbnail:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: black;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 20px;
+  color: white;
+  font-variant: small-caps;
+  padding: 16px 32px;
+}
+
+.navbar-brand{
+    font-family: 'Julius Sans One', sans-serif;
+    fot-size: 30px;
+}
+
+.vermas{
+    padding: 10px 25px;
+    float: right;
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-variant: small-caps;
+}
+
+.vermas:hover {
+    color: #D2D4C8 !important;
+    text-decoration: none;
+}
+
 </style>
 
 <body>
@@ -86,7 +150,7 @@ h2{
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">TH</a>
+            <a class="navbar-brand" href="/welcome">TH</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -108,24 +172,61 @@ h2{
         </div>
     </form>
     <div class="container-fluid text-center bg-grey">
-        <h2>Favoritos</h2>
+        <h2>Categorias</h2>
         <div class="row text-center">
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://bit.ly/2I1nTWK" alt="Pizza"/>
+                    <img src="https://bit.ly/2I1nTWK" class="image" alt="Pizza"/>
+                    <div class="middle">
+                        <div class="text">Pizza</div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://bit.ly/2rC1SD8" alt="Burguer"/>
+                    <img src="https://bit.ly/2rC1SD8" class="image" alt="Comida rapida"/>
+                    <div class="middle">
+                        <div class="text">Comida rapida</div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://bit.ly/2KPE3Ap" alt="Nachos"/>
+                    <img src="https://bit.ly/2GfReHd" class="image" alt="Heladeria"/>
+                    <div class="middle">
+                        <div class="text">Heladeria</div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- new row-->
+        <div class="row text-center">
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="https://bit.ly/2IDma9Q" class="image" alt="Pastas"/>
+                    <div class="middle">
+                        <div class="text">Pastas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="https://bit.ly/2IHrKrF" class="image" alt="Cafes"/>
+                    <div class="middle">
+                        <div class="text">Cafes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="https://bit.ly/2GiAboc" class="image" alt="Comida vegetariana"/>
+                    <div class="middle">
+                        <div class="text">Vegetariana</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <li><a class="vermas" href="#categorias">Ver mas categorias</a></li>
     </div>
 </div>
 
