@@ -17,6 +17,21 @@
     <textarea name="description" th:text="${rest.description}" id="description" cols="30" rows="10">
     </textarea>
 
+
+    <select name="category" id="category">
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.nombre}"
+                th:selected="(${category.id} == ${rest.category.id})"></option>
+    </select>
+
+    <select name="city" id="city">
+        <option th:each="city : ${cities}"
+                th:value="${city.id}"
+                th:text="${city.nombre}"
+                th:selected="(${city.id} == ${rest.city.id})"></option>
+    </select>
+
     <input type="submit" value="Guardar"></input>
 </form>
 

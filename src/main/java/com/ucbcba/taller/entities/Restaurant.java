@@ -1,10 +1,7 @@
 package com.ucbcba.taller.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Blob;
 
@@ -26,6 +23,14 @@ public class Restaurant {
 
     //@NotNull
     private Blob photo;
+
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="city_id")
+    private City city;
 
 
     public Integer getId() {
@@ -67,4 +72,12 @@ public class Restaurant {
     public void setPhoto(Blob photo) {
         this.photo = photo;
     }
+
+    public Category getCategory(){return category;}
+
+    public void setCategory(Category category){this.category=category;}
+
+    public City getCity(){return city;}
+
+    public void setCity(City city){this.city=city;}
 }

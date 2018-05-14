@@ -1,7 +1,12 @@
 package com.ucbcba.taller.controllers;
 
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.ucbcba.taller.entities.Category;
+import com.ucbcba.taller.entities.City;
 import com.ucbcba.taller.entities.Restaurant;
+import com.ucbcba.taller.services.CategoryService;
+import com.ucbcba.taller.services.CityService;
 import com.ucbcba.taller.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,10 +22,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RestaurantContoller {
 
     private RestaurantService restaurantService;
+    private CategoryService categoryService;
+    private CityService cityService;
 
     @Autowired
     public void setRestaurantService(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
+    }
+
+    @Autowired
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
+    @Autowired
+    public void setCityService(CityService cityService) {
+        this.cityService = cityService;
     }
 
     @RequestMapping(value = "/restaurant", method = RequestMethod.POST)
@@ -31,9 +48,11 @@ public class RestaurantContoller {
     }
 
     @RequestMapping("/newRestaurant")
-    String newRestaurant() {
-
-
+    String newRestaurant(Model model) {
+        Iterable<Category> categories = categoryService.listAllCategories();
+        model.addAttribute("categories", categories);
+        Iterable<City> cities=cityService.listAllCities();
+        model.addAttribute("cities",cities);
         return "newRestaurant";
     }
 
@@ -60,6 +79,10 @@ public class RestaurantContoller {
     @RequestMapping("/editRestaurant/{id}")
     String editPost(@PathVariable Integer id, Model model) {
         Restaurant rest = restaurantService.getRestaurant(id);
+        Iterable<Category> categories = categoryService.listAllCategories();
+        model.addAttribute("categories", categories);
+        Iterable<City> cities=cityService.listAllCities();
+        model.addAttribute("cities",cities);
         model.addAttribute("rest", rest);
         return "editRestaurant";
     }

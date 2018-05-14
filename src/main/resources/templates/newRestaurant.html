@@ -17,7 +17,19 @@
     <textarea name="phone" id="phone" cols="30" rows="1"></textarea>
     <p>Description:</p>
     <textarea name="description" id="description" cols="30" rows="5"></textarea>
+    <br/>
+    <p>Categoria:</p>
+    <select name="category" id="category">
+        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nombre}"></option>
+    </select>
+    <br/>
 
+    <p>Ciudad:</p>
+    <select name="city" id="city">
+        <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.nombre}"></option>
+    </select>
+
+    <br/>
 
     <input type="submit" value="Guardar"></input>
 </form>

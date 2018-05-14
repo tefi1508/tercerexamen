@@ -24,6 +24,12 @@
             Descripcion
         </th>
         <th>
+            Categoria
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
             Foto
         </th>
         <th>
@@ -39,6 +45,10 @@
         <td th:text="${restaurant.phone}">
         </td>
         <td th:text="${restaurant.description}">
+        </td>
+        <td th:text="${restaurant.category.nombre}">
+        </td>
+        <td th:text="${restaurant.city.nombre}">
         </td>
         <td th:text="${restaurant.photo}">
         </td>
