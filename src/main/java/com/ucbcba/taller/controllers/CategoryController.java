@@ -1,8 +1,12 @@
 package com.ucbcba.taller.controllers;
 
 import com.ucbcba.taller.entities.Category;
+import com.ucbcba.taller.entities.User;
 import com.ucbcba.taller.services.CategoryService;
+import com.ucbcba.taller.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CategoryController {
     private CategoryService categoryService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public void setCategoryService(CategoryService categoryService) {
@@ -27,9 +34,16 @@ public class CategoryController {
 
     @RequestMapping("/newCategory")
     String newRestaurant(Model model) {
-        Iterable<Category> categories = categoryService.listAllCategories();
-        model.addAttribute("categories", categories);
-        return "newCategory";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            Iterable<Category> categories = categoryService.listAllCategories();
+            model.addAttribute("categories", categories);
+            return "newCategory";
+        }
+        else{
+            return "redirect:/Categories";
+        }
     }
 
     @RequestMapping(value = "/Categories" ,method = RequestMethod.GET)
@@ -49,14 +63,25 @@ public class CategoryController {
 
     @RequestMapping("/deleteCategory/{id}")
     String delete(@PathVariable Integer id) {
-        categoryService.deleteCategory(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            categoryService.deleteCategory(id);
+        }
         return "redirect:/Categories";
     }
 
     @RequestMapping("/editCategory/{id}")
     String editPost(@PathVariable Integer id, Model model) {
-        Category cate = categoryService.getCategory(id);
-        model.addAttribute("cate", cate);
-        return "editCategory";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            Category cate = categoryService.getCategory(id);
+            model.addAttribute("cate", cate);
+            return "editCategory";
+        }
+        else{
+            return "redirect:/Categories";
+        }
     }
 }

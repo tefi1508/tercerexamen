@@ -4,17 +4,19 @@ package com.ucbcba.taller.controllers;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.ucbcba.taller.entities.Category;
 import com.ucbcba.taller.entities.City;
+import com.ucbcba.taller.entities.User;
 import com.ucbcba.taller.entities.Restaurant;
 import com.ucbcba.taller.services.CategoryService;
 import com.ucbcba.taller.services.CityService;
 import com.ucbcba.taller.services.RestaurantService;
 import com.ucbcba.taller.services.UploadFileService;
+import com.ucbcba.taller.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,9 @@ public class RestaurantContoller {
     private RestaurantService restaurantService;
     private CategoryService categoryService;
     private CityService cityService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public void setRestaurantService(RestaurantService restaurantService) {
@@ -65,12 +70,18 @@ public class RestaurantContoller {
 
     @RequestMapping("/newRestaurant")
     String newRestaurant(Model model) {
-        Iterable<Category> categories = categoryService.listAllCategories();
-        model.addAttribute("categories", categories);
-        Iterable<City> cities=cityService.listAllCities();
-        model.addAttribute("cities",cities);
-
-        return "newRestaurant";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            Iterable<Category> categories = categoryService.listAllCategories();
+            model.addAttribute("categories", categories);
+            Iterable<City> cities = cityService.listAllCities();
+            model.addAttribute("cities", cities);
+            return "newRestaurant";
+        }
+        else {
+            return "redirect:/Restaurants";
+        }
     }
 
     @RequestMapping(value = "/Restaurants",method = RequestMethod.GET)
@@ -89,19 +100,30 @@ public class RestaurantContoller {
 
     @RequestMapping("/deleteRestaurant/{id}")
     String delete(@PathVariable Integer id) {
-        restaurantService.deleteRestaurant(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            restaurantService.deleteRestaurant(id);
+        }
         return "redirect:/Restaurants";
     }
 
     @RequestMapping("/editRestaurant/{id}")
     String editPost(@PathVariable Integer id, Model model) {
-        Restaurant rest = restaurantService.getRestaurant(id);
-        Iterable<Category> categories = categoryService.listAllCategories();
-        model.addAttribute("categories", categories);
-        Iterable<City> cities=cityService.listAllCities();
-        model.addAttribute("cities",cities);
-        model.addAttribute("rest", rest);
-        return "editRestaurant";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            Restaurant rest = restaurantService.getRestaurant(id);
+            Iterable<Category> categories = categoryService.listAllCategories();
+            model.addAttribute("categories", categories);
+            Iterable<City> cities = cityService.listAllCities();
+            model.addAttribute("cities", cities);
+            model.addAttribute("rest", rest);
+            return "editRestaurant";
+        }
+        else{
+            return "redirect:/Restaurants";
+        }
     }
 
 

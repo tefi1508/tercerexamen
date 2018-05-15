@@ -6,6 +6,8 @@ import com.ucbcba.taller.entities.User;
 import com.ucbcba.taller.services.SecurityService;
 import com.ucbcba.taller.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,16 +55,29 @@ public class UserController {
         return "login";
     }
 
+
+
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         return "welcome";
     }
     @RequestMapping(value = {"/admin/"}, method = RequestMethod.GET)
     public String admin(Model model) {
+
         return "welcome";
     }
     @RequestMapping(value = {"/bienvenidos"}, method = RequestMethod.GET)
     public String welcome2(Model model) {
         return "bienvenidos";
     }
+
+    @RequestMapping(value = {"/makeAdmin"}, method = RequestMethod.GET)
+    public  String makeAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        boolean adm = true;
+        user.setAdmin(adm);
+        return "redirect:/bienvenidos";
+    }
+
 }
