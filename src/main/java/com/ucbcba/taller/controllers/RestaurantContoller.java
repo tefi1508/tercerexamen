@@ -9,16 +9,21 @@ import com.ucbcba.taller.entities.Restaurant;
 import com.ucbcba.taller.services.CategoryService;
 import com.ucbcba.taller.services.CityService;
 import com.ucbcba.taller.services.RestaurantService;
+import com.ucbcba.taller.services.UploadFileService;
 import com.ucbcba.taller.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.text.AttributedString;
 
 @Controller
 public class RestaurantContoller {
@@ -45,8 +50,19 @@ public class RestaurantContoller {
         this.cityService = cityService;
     }
 
+    @Autowired
+    private UploadFileService uploadFileService;
+
+
     @RequestMapping(value = "/restaurant", method = RequestMethod.POST)
-    String save(Restaurant restaurant) {
+    String save(@RequestParam("file")MultipartFile file,Restaurant restaurant) {
+
+        try {
+
+            uploadFileService.saveFile(file,restaurant.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         restaurantService.saveRestaurant(restaurant);
         return "redirect:/Restaurants";
@@ -109,4 +125,20 @@ public class RestaurantContoller {
             return "redirect:/Restaurants";
         }
     }
+
+
+//    @PostMapping("upload")
+//    public ResponseEntity<?> uploadFile(@RequestParam("file")MultipartFile file){
+//        if(file.isEmpty()){
+//            return new ResponseEntity<Object>("Seleccionar Un Archivo", HttpStatus.OK);
+//
+//        }
+//
+//        try {
+//            uploadFileService.saveFile(file);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return new ResponseEntity<>("Archivo Subido Correctamente", HttpStatus.OK);
+//    }
 }
