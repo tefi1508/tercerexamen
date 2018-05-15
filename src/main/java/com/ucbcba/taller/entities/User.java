@@ -18,6 +18,7 @@ public class User {
     private String name;
     private String lastName;
     private Blob photo;
+    private boolean admin=false;
     private Set<Role> roles;
 
     @Id
@@ -87,5 +88,13 @@ public class User {
 
     public void setPhoto(Blob photo) {
         this.photo = photo;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }
