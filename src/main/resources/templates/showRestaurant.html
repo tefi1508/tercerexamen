@@ -14,6 +14,8 @@
 <b>Foto:</b> <p th:text="${rest.photo}"></p>
 <b>Categoria:</b> <p th:text="${rest.category.nombre}"></p>
 <b>Ciudad:</b> <p th:text="${rest.city.nombre}"></p>
+<b>Likes:</b> <p th:text="${rest.likes}"></p>
+<a th:href="${'/like/' + rest.id}">Like</a>
 
 
 <!--<img src="../files/laEsquina.jpg" />-->

@@ -126,19 +126,17 @@ public class RestaurantContoller {
         }
     }
 
+    @RequestMapping("/like/{id}")
+    String like(@PathVariable Integer id) {
+        Restaurant res = restaurantService.getRestaurant(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if (res.findUserLike(user) == false) {
+            res.addLikke(user);
+            res.setLikes(res.getLikes()+1);
+            restaurantService.saveRestaurant(res);
+        }
+        return "redirect:/showRestaurant/" + res.getId();
+    }
 
-//    @PostMapping("upload")
-//    public ResponseEntity<?> uploadFile(@RequestParam("file")MultipartFile file){
-//        if(file.isEmpty()){
-//            return new ResponseEntity<Object>("Seleccionar Un Archivo", HttpStatus.OK);
-//
-//        }
-//
-//        try {
-//            uploadFileService.saveFile(file);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return new ResponseEntity<>("Archivo Subido Correctamente", HttpStatus.OK);
-//    }
 }
