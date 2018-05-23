@@ -37,4 +37,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     public void deleteRestaurant(Integer id) {
         restaurantRepository.delete(id);
     }
+
+    @Override
+    public Restaurant findRestaurantByName(String name){
+        return restaurantRepository.findRestaurantByName(name);
+    }
 }
