@@ -9,6 +9,7 @@
     <br/>
 <form action="/restaurant" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" th:value="${rest.id}"/>
+    <input type="hidden" name="likes" th:value="${rest.likes}"/>
     <p>Ingrese nuevo nombre de restaurante:</p>
     <textarea name="name" th:text="${rest.name}" id="name" cols="30" rows="3">
     </textarea>
