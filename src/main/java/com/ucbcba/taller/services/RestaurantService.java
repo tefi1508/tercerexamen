@@ -11,4 +11,6 @@ public interface RestaurantService {
     Restaurant getRestaurant(Integer id);
 
     void deleteRestaurant(Integer id);
+
+    Restaurant findRestaurantByName(String name);
 }
