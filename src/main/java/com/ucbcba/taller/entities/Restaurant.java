@@ -39,6 +39,9 @@ public class Restaurant {
     @JoinColumn(name="city_id")
     private City city;
 
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    List<Comment> comments;
+
 
     public Integer getId() {
         return id;
@@ -116,4 +119,8 @@ public class Restaurant {
         }
         return false;
     }
+
+    public List<Comment> getComments(){return comments;}
+
+    public void setComments(List<Comment> comments){this.comments=comments;}
 }
