@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
+    <title>Restaurants</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet"/>
@@ -107,67 +107,6 @@ h2{
 </style>
 
 <body>
-<<<<<<< HEAD
-=======
-<h1>Restaurantes</h1>
-
-<a th:href="${'/logout'}">Logout</a>
-<a href="/newRestaurant">Agregar</a>
-
-<table>
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Telefono
-        </th>
-        <th>
-            Descripcion
-        </th>
-        <th>
-            Categoria
-        </th>
-        <th>
-            Ciudad
-        </th>
-        <th>
-            Foto
-        </th>
-        <th>
-            Opciones
-        </th>
-    </tr>
-
-    <tr th:each="restaurant : ${restList}">
-        <td th:text="${restaurant.id}">
-        </td>
-        <td th:text="${restaurant.name}">
-        </td>
-        <td th:text="${restaurant.phone}">
-        </td>
-        <td th:text="${restaurant.description}">
-        </td>
-        <td th:text="${restaurant.category.nombre}">
-        </td>
-        <td th:text="${restaurant.city.nombre}">
-        </td>
-        <td th:text="${restaurant.photo}">
-        </td>
-        <td>
-            <a th:href="${'/showRestaurant/' + restaurant.id}"> Ver </a>
-            <a th:href="${'/editRestaurant/' + restaurant.id}"> Editar </a>
-            <a th:href="${'/deleteRestaurant/' + restaurant.id}"> Eliminar </a>
-        </td>
-
-    </tr>
-
-
-</table>
->>>>>>> 3008dd4fbdb7128c3f27086d5c455b1d9e082e7c
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">

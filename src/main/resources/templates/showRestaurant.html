@@ -107,8 +107,6 @@ h2{
 </style>
 
 <body>
-
-<<<<<<< HEAD
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -140,22 +138,19 @@ h2{
     <br/>
     <b>Likes:</b> <p th:text="${rest.likes}"></p>
     <a th:href="${'/like/' + rest.id}">Like</a>
+    <form action="/comment" method="POST">
+        <p>Comentario:</p>
+        <input type="hidden" name="restaurant" th:value="${rest.id}"></input>
+        <input type="hidden" name="user" th:value="${use.id}"></input>
+        <textarea name="text" id="text" cols="30" rows="1"></textarea>
+        <br/>
+        <input type="submit" value="Guardar"></input>
+    </form>
+    <p th:each="comment : ${rest.comments}" >
+        <span th:text="${comment.text}"></span><br/>
+    </p>
 
 </div>
-=======
-<form action="/comment" method="POST">
-    <p>Comentario:</p>
-    <input type="hidden" name="restaurant" th:value="${rest.id}"></input>
-    <input type="hidden" name="user" th:value="${use.id}"></input>
-    <textarea name="text" id="text" cols="30" rows="1"></textarea>
-    <br/>
-    <input type="submit" value="Guardar"></input>
-</form>
-<p th:each="comment : ${rest.comments}" >
-    <span th:text="${comment.text}"></span><br/>
-</p>
-
->>>>>>> 3008dd4fbdb7128c3f27086d5c455b1d9e082e7c
 </body>
 </html>
 

@@ -52,24 +52,13 @@ public class RestaurantContoller {
 
 
     @RequestMapping(value = "/restaurant", method = RequestMethod.POST)
-<<<<<<< HEAD
-    String save(/*@RequestParam("file")MultipartFile file,*/Restaurant restaurant) {
-        /*try {
-=======
     String save(@RequestParam("file")MultipartFile file,Restaurant restaurant) {
-
         try {
->>>>>>> 3008dd4fbdb7128c3f27086d5c455b1d9e082e7c
 
             uploadFileService.saveFile(file ,restaurant.getName());
         } catch (IOException e) {
             e.printStackTrace();
-<<<<<<< HEAD
-        }*/
-=======
         }
-
->>>>>>> 3008dd4fbdb7128c3f27086d5c455b1d9e082e7c
         restaurantService.saveRestaurant(restaurant);
         return "redirect:/Restaurants";
     }
