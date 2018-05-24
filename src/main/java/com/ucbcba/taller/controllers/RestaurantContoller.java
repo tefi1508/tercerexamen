@@ -56,14 +56,12 @@ public class RestaurantContoller {
 
     @RequestMapping(value = "/restaurant", method = RequestMethod.POST)
     String save(/*@RequestParam("file")MultipartFile file,*/Restaurant restaurant) {
-
         /*try {
 
             uploadFileService.saveFile(file,restaurant.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-
         restaurantService.saveRestaurant(restaurant);
         return "redirect:/Restaurants";
     }
@@ -86,8 +84,10 @@ public class RestaurantContoller {
 
     @RequestMapping(value = "/Restaurants",method = RequestMethod.GET)
     public String showRest(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
         Iterable<Restaurant> restList = restaurantService.listAllRestaurants();
-        model.addAttribute("restList",restList);
+        model.addAttribute("restList", restList);
         return "showRestaurants";
     }
 
