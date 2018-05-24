@@ -224,18 +224,22 @@ h2{
                     <h4><span class="glyphicon glyphicon-lock"></span> Login </h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
-                    <form role="form">
+                    <form th:action="@{/login}" method="POST" class="form-signin">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="usrname" placeholder="Correo electronico"/>
+                            <input type="text" id="username" name="username"  th:placeholder="username"
+                                   class="form-control" />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="psw" placeholder="Contraseña"/>
+                            <input type="password"  th:placeholder="Password"
+                                   id="password" name="password" class="form-control" />
                         </div>
-                        <a href="/bienvenidos" class="btn btn-success btn-block">Iniciar sesion</a>
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="/registration">Sign Up</a>
+                    <form th:action="@{/registration}" method="get">
+                        <a href="/registration">Sign Up</a>
+                    </form>
                 </div>
             </div>
 
