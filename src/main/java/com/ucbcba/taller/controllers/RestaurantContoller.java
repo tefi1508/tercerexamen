@@ -52,14 +52,14 @@ public class RestaurantContoller {
 
 
     @RequestMapping(value = "/restaurant", method = RequestMethod.POST)
-    String save(/*@RequestParam("file")MultipartFile file,*/Restaurant restaurant) {
+    String save(@RequestParam("file")MultipartFile file,Restaurant restaurant) {
 
-        /*try {
+        try {
 
-            uploadFileService.saveFile(file,restaurant.getName());
+            uploadFileService.saveFile(file ,restaurant.getName());
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
         restaurantService.saveRestaurant(restaurant);
         return "redirect:/Restaurants";
