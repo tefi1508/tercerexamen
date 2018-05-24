@@ -9,6 +9,13 @@
     <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        function buscar() {
+            const nombre = document.getElementById("input-buscarRes").value;
+            location.href = "/search/"+nombre;
+        }
+    </script>
 </head>
 <style>
 
@@ -166,9 +173,9 @@ h2{
     <p>Restaurantes en tu ciudad</p>
     <form class="form-inline">
         <div class="input-group">
-            <input type="email" class="form-control" size="50" placeholder="Que quieres comer?"/>
+            <input class="form-control" size="50" placeholder="Que quieres comer?" id="input-buscarRes"/>
             <div class="input-group-btn">
-                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></span></button>
+                <a class="btn btn-danger" onclick="buscar()"><span class="glyphicon glyphicon-search"></span></a>
             </div>
         </div>
     </form>

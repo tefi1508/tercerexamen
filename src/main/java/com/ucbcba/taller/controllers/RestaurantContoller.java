@@ -2,10 +2,7 @@ package com.ucbcba.taller.controllers;
 
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
-import com.ucbcba.taller.entities.Category;
-import com.ucbcba.taller.entities.City;
-import com.ucbcba.taller.entities.User;
-import com.ucbcba.taller.entities.Restaurant;
+import com.ucbcba.taller.entities.*;
 import com.ucbcba.taller.services.CategoryService;
 import com.ucbcba.taller.services.CityService;
 import com.ucbcba.taller.services.RestaurantService;
@@ -55,13 +52,24 @@ public class RestaurantContoller {
 
 
     @RequestMapping(value = "/restaurant", method = RequestMethod.POST)
+<<<<<<< HEAD
     String save(/*@RequestParam("file")MultipartFile file,*/Restaurant restaurant) {
         /*try {
+=======
+    String save(@RequestParam("file")MultipartFile file,Restaurant restaurant) {
 
-            uploadFileService.saveFile(file,restaurant.getName());
+        try {
+>>>>>>> 3008dd4fbdb7128c3f27086d5c455b1d9e082e7c
+
+            uploadFileService.saveFile(file ,restaurant.getName());
         } catch (IOException e) {
             e.printStackTrace();
+<<<<<<< HEAD
         }*/
+=======
+        }
+
+>>>>>>> 3008dd4fbdb7128c3f27086d5c455b1d9e082e7c
         restaurantService.saveRestaurant(restaurant);
         return "redirect:/Restaurants";
     }
@@ -95,6 +103,10 @@ public class RestaurantContoller {
     String showRes(@PathVariable Integer id, Model model) {
         Restaurant rest = restaurantService.getRestaurant(id);
         model.addAttribute("rest", rest);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        model.addAttribute("comment",new Comment(rest,user));
+        model.addAttribute("use", user);
         return "showRestaurant";
     }
 
@@ -137,6 +149,13 @@ public class RestaurantContoller {
             restaurantService.saveRestaurant(res);
         }
         return "redirect:/showRestaurant/" + res.getId();
+    }
+
+    @RequestMapping(value="/search/{name}", method = RequestMethod.GET)
+    public String buscarRestaurant(@PathVariable("name") String name, Model model){
+        Restaurant restaurant = restaurantService.findRestaurantByName(name);
+        model.addAttribute("restaurant", restaurant);
+        return "redirect:/showRestaurant/"+ restaurant.getId();
     }
 
 }
