@@ -114,12 +114,11 @@ h2{
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/bienvenidos">TH</a>
+            <a class="navbar-brand" href="/welcome">TH</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="${'/showUserAccount'}">Perfil</a></li>
-                <li><a th:href="${'/logout'}">Logout</a></li>
+                <li><a href="/login">Iniciar sesion</a></li>
             </ul>
         </div>
     </div>
@@ -129,36 +128,23 @@ h2{
     <h1>TengoHambre</h1>
     <h2>Categorias</h2>
 
-<a href="/newCategory">Agregar</a>
+    <table>
+        <tr>
+            <th>
+                Nombre
+            </th>
 
-<table>
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Opciones
-        </th>
-    </tr>
+        </tr>
 
-    <tr th:each="category : ${cateList}">
-        <td th:text="${category.id}">
-        </td>
-        <td th:text="${category.nombre}">
-        </td>
-        <td>
-            <a th:href="${'/showCategory/' + category.id}">Ver</a>
-            <a th:href="${'/editCategory/' + category.id}">Editar</a>
-            <a th:href="${'/deleteCategory/' + category.id}">Eliminar</a>
-        </td>
+        <tr th:each="cate : ${cateList}">
+            <td th:text="${cate.nombre}">
+            </td>
 
-    </tr>
+        </tr>
 
 
-</table>
+    </table>
 </div>
+
 </body>
 </html>
