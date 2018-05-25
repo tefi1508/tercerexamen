@@ -104,6 +104,45 @@ h2{
     fot-size: 30px;
 }
 
+/*-------------------Comentarios-----------------*/
+#text{
+    color: black;
+    font-weight: bold;
+}
+
+#bt-guardar{
+    background-color: gray;
+    font-weight: 600;
+}
+
+#bt-guardar:hover{
+    color: yellow;
+}
+
+/*-------------------Estrellas-----------------*/
+
+.clasificacion input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
 </style>
 
 <body>
@@ -137,13 +176,28 @@ h2{
     <br/>
     <b>Likes:</b> <p th:text="${rest.likes}"></p>
     <a th:href="${'/like/' + rest.id}">Like</a>
+
     <form action="/comment" method="POST">
         <p>Comentario:</p>
         <input type="hidden" name="restaurant" th:value="${rest.id}"></input>
         <input type="hidden" name="user" th:value="${use.id}"></input>
+
+        <div class="clasificacion">
+            <input style="display: none;" id="radio1" type="radio" name="estrellas" th:value="5"/>
+        <label for="radio1">★</label>
+        <input style="display: none;" id="radio2" type="radio" name="estrellas" th:value="4"/>
+        <label for="radio2">★</label>
+        <input style="display: none;" id="radio3" type="radio" name="estrellas" th:value="3"/>
+        <label for="radio3">★</label>
+        <input style="display: none;" id="radio4" type="radio" name="estrellas" th:value="2"/>
+        <label for="radio4">★</label>
+        <input style="display: none;" id="radio5" type="radio" name="estrellas" th:value="1"/>
+        <label for="radio5">★</label>
+        </div>
+
         <textarea name="text" id="text" cols="30" rows="1"></textarea>
         <br/>
-        <input type="submit" value="Guardar"></input>
+        <input id="bt-guardar" class="btn btn-ttc" type="submit" value="Guardar"/>
     </form>
     <p th:each="comment : ${rest.comments}" >
         <span th:text="${comment.text}"></span><br/>
