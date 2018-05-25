@@ -1,12 +1,10 @@
 package com.ucbcba.taller.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -18,6 +16,9 @@ public class Category {
     @NotNull
     private String nombre;
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    List<Restaurant> restaurantList;
+
     public String getNombre() { return nombre;   }
 
     public void setNombre(String nombre){this.nombre=nombre;}
@@ -25,4 +26,13 @@ public class Category {
     public Integer getId(){return id;}
 
     public void setId(Integer id){this.id=id;}
+
+    public void setRestaurantList(List<Restaurant> restaurantList){
+        this.restaurantList = restaurantList;
+    }
+
+    public List<Restaurant> getRestaurantList(){
+        return restaurantList;
+    }
+
 }
