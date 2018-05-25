@@ -53,6 +53,32 @@ public class CategoryController {
         return "showCategories";
     }
 
+    @RequestMapping(value = "/userCategories" ,method = RequestMethod.GET)
+    String showCatUser(Model model) {
+        Iterable<Category> cateList = categoryService.listAllCategories();
+        model.addAttribute("cateList",cateList);
+        return "showCategoriesUser";
+    }
+
+    @RequestMapping(value = "/publicCategories" ,method = RequestMethod.GET)
+    String showCatPub(Model model) {
+        Iterable<Category> cateList = categoryService.listAllCategories();
+        model.addAttribute("cateList",cateList);
+        return "showCategoriesPublic";
+    }
+
+    @RequestMapping(value = "/showCategories",method = RequestMethod.GET)
+    public String showCategories(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            return "redirect:/Categories";
+        }
+        else{
+            return "redirect:/userCategories";
+        }
+    }
+
     @RequestMapping("/showCategory/{id}")
     String showRes(@PathVariable Integer id, Model model) {
         Category cate = categoryService.getCategory(id);

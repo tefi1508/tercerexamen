@@ -88,6 +88,36 @@ public class RestaurantContoller {
         return "showRestaurants";
     }
 
+    @RequestMapping(value = "/publicRestaurants",method = RequestMethod.GET)
+    public String showRestPub(Model model) {
+        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());*/
+        Iterable<Restaurant> restList = restaurantService.listAllRestaurants();
+        model.addAttribute("restList", restList);
+        return "showRestaurantsPublic";
+    }
+
+    @RequestMapping(value = "/userRestaurants",method = RequestMethod.GET)
+    public String showRestUser(Model model) {
+        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());*/
+        Iterable<Restaurant> restList = restaurantService.listAllRestaurants();
+        model.addAttribute("restList", restList);
+        return "showRestaurantsUser";
+    }
+
+    @RequestMapping(value = "/showRestaurants",method = RequestMethod.GET)
+    public String showRestaurants(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()) {
+            return "redirect:/Restaurants";
+        }
+        else{
+            return "redirect:/userRestaurants";
+        }
+    }
+
     @RequestMapping("/showRestaurant/{id}")
     String showRes(@PathVariable Integer id, Model model) {
         Restaurant rest = restaurantService.getRestaurant(id);
@@ -97,6 +127,13 @@ public class RestaurantContoller {
         model.addAttribute("comment",new Comment(rest,user));
         model.addAttribute("use", user);
         return "showRestaurant";
+    }
+
+    @RequestMapping("/showRestaurantPublic/{id}")
+    String showRest(@PathVariable Integer id, Model model) {
+        Restaurant rest = restaurantService.getRestaurant(id);
+        model.addAttribute("rest", rest);
+        return "showRestaurantPublic";
     }
 
     @RequestMapping("/deleteRestaurant/{id}")
@@ -145,6 +182,13 @@ public class RestaurantContoller {
         Restaurant restaurant = restaurantService.findRestaurantByName(name);
         model.addAttribute("restaurant", restaurant);
         return "redirect:/showRestaurant/"+ restaurant.getId();
+    }
+
+    @RequestMapping(value="/publicSearch/{name}", method = RequestMethod.GET)
+    public String buscarRestaurantPublic(@PathVariable("name") String name, Model model){
+        Restaurant restaurant = restaurantService.findRestaurantByName(name);
+        model.addAttribute("restaurant", restaurant);
+        return "redirect:/showRestaurantPublic/"+ restaurant.getId();
     }
 
 }
