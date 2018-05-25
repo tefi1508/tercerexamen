@@ -16,6 +16,9 @@ public class Comment {
     @Size(min = 1,max = 50,message = "comentario no exceda de 50 palabras")
     private String text;
 
+
+    private Integer estrellas;
+
     @ManyToOne
     @JoinColumn(name= "restauran_id")
     private Restaurant restaurant;
@@ -47,4 +50,12 @@ public class Comment {
 
     public void setUser(User user){this.user=user;}
 
+
+    public Integer getEstrellas() {
+        return estrellas;
+    }
+
+    public void setEstrellas(Integer estrellas) {
+        this.estrellas = estrellas;
+    }
 }

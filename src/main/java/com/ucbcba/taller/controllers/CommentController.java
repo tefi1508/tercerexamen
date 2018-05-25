@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 
 @Controller
 public class CommentController {
@@ -30,7 +31,7 @@ public class CommentController {
     public void setRestaurantService(RestaurantService restaurantService){this.restaurantService=restaurantService;}
 
     @RequestMapping(value="/comment", method = RequestMethod.POST)
-    String save(Model model, @Valid Comment comment, BindingResult bindingResult) {
+    String save(@Valid Comment comment, BindingResult bindingResult) {
 
         /*if(bindingResult.hasErrors()) {
             Restaurant restaurant = restaurantService.getRestaurant(comment.getRestaurant().getId());
@@ -40,6 +41,14 @@ public class CommentController {
             model.addAttribute("user", user);
             return "showRestaurant";
         }*/
+//        System.out.println("Restaurante Id: " +comment.getRestaurant().getId());
+        if (comment.getUser()== null){
+            System.out.println("Error");
+
+        }
+        else {
+            System.out.println("Usuario Id: " + comment.getUser().getId());
+        }
         commentService.saveComment(comment);
         return "redirect:/showRestaurant/"+comment.getRestaurant().getId();
     }

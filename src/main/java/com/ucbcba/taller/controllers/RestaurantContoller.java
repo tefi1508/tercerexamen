@@ -124,6 +124,8 @@ public class RestaurantContoller {
         model.addAttribute("rest", rest);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
+
+
         model.addAttribute("comment",new Comment(rest,user));
         model.addAttribute("use", user);
         return "showRestaurant";
