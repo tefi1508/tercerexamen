@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.AttributedString;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -139,6 +140,27 @@ public class RestaurantContoller {
         return "showRestaurantPublic";
     }
 
+    @RequestMapping("/showRestaurantAdmin/{id}")
+    String showRestAdmin(@PathVariable Integer id, Model model) {
+        Restaurant rest = restaurantService.getRestaurant(id);
+        model.addAttribute("rest", rest);
+        return "showRestaurantAdmin";
+    }
+
+    @RequestMapping("/showRestaurantUser/{id}")
+    String showRestUser(@PathVariable Integer id, Model model) {
+        Restaurant rest = restaurantService.getRestaurant(id);
+        model.addAttribute("rest", rest);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()){
+            return "showRestaurantAdmin";
+        }
+        else{
+            return "redirect:/showRestaurant/"+id;
+        }
+    }
+
     @RequestMapping("/deleteRestaurant/{id}")
     String delete(@PathVariable Integer id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -181,17 +203,38 @@ public class RestaurantContoller {
     }
 
     @RequestMapping(value="/search/{name}", method = RequestMethod.GET)
+
     public String buscarRestaurant(@PathVariable("name") String name, Model model){
-        Restaurant restaurant = restaurantService.findRestaurantByName(name);
-        model.addAttribute("restaurant", restaurant);
-        return "redirect:/showRestaurant/"+ restaurant.getId();
+        //Restaurant restaurant = restaurantService.findRestaurantByName(name);
+//        model.addAttribute("restaurant", restaurant);
+//        return "redirect:/showRestaurant/"+ restaurant.getId();
+
+        List<Restaurant> restaurants=(List<Restaurant>)restaurantService.listAllRestaurants();
+        List<Restaurant> aux= new ArrayList<>();
+        for (Restaurant restaurant : restaurants){
+            if (restaurant.getName().contains(name)){
+                aux.add(restaurant);
+            }
+        }
+        model.addAttribute("restList", aux);
+        return "showRestaurantsUser";
+
     }
 
     @RequestMapping(value="/publicSearch/{name}", method = RequestMethod.GET)
     public String buscarRestaurantPublic(@PathVariable("name") String name, Model model){
-        Restaurant restaurant = restaurantService.findRestaurantByName(name);
-        model.addAttribute("restaurant", restaurant);
-        return "redirect:/showRestaurantPublic/"+ restaurant.getId();
+//        Restaurant restaurant = restaurantService.findRestaurantByName(name);
+//        model.addAttribute("restaurant", restaurant);
+//        return "redirect:/showRestaurantPublic/"+ restaurant.getId();
+        List<Restaurant> restaurants=(List<Restaurant>)restaurantService.listAllRestaurants();
+        List<Restaurant> aux= new ArrayList<>();
+        for (Restaurant restaurant : restaurants){
+            if (restaurant.getName().contains(name)){
+                aux.add(restaurant);
+            }
+        }
+        model.addAttribute("restList", aux);
+        return "showRestaurantsUser";
     }
 
     @RequestMapping(value="/categorysearch/{category_id}")
@@ -201,5 +244,43 @@ public class RestaurantContoller {
         model.addAttribute("restList", restList);
        return "showRestaurantsPublic";
    }
+
+    @RequestMapping(value="/usercategorysearch/{category_id}")
+    public String buscarusuario(@PathVariable Integer category_id, Model model){
+        Category category = categoryService.getCategory(category_id);
+        List<Restaurant> restList = category.getRestaurantList();
+        model.addAttribute("restList", restList);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()){
+            return "showRestaurants";
+        }
+        else{
+            return "showRestaurantsUser";
+        }
+    }
+
+    @RequestMapping(value="/citysearch/{city_id}")
+    public String buscarCiudad(@PathVariable Integer city_id, Model model){
+        City city=cityService.getCity(city_id);
+        List<Restaurant> resList=city.getRestaurantList();
+        model.addAttribute("restList", resList);
+        return  "showRestaurantsPublic";
+    }
+
+    @RequestMapping(value="/usercitysearch/{city_id}")
+    public String buscarCiudadUser(@PathVariable Integer city_id, Model model){
+        City city=cityService.getCity(city_id);
+        List<Restaurant> resList=city.getRestaurantList();
+        model.addAttribute("restList", resList);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        if(user.isAdmin()){
+            return "showRestaurants";
+        }
+        else{
+            return "showRestaurantsUser";
+        }
+    }
 
 }
