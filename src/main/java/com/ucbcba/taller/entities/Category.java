@@ -17,7 +17,7 @@ public class Category {
     private String nombre;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    List<Restaurant> restaurantList;
+    private List<Restaurant> restaurantList;
 
     public String getNombre() { return nombre;   }
 
@@ -27,12 +27,9 @@ public class Category {
 
     public void setId(Integer id){this.id=id;}
 
-    public void setRestaurantList(List<Restaurant> restaurantList){
-        this.restaurantList = restaurantList;
-    }
-
-    public List<Restaurant> getRestaurantList(){
+    public List<Restaurant> getRestaurantList() {
         return restaurantList;
     }
 
+    public void setRestaurantList(List<Restaurant> restaurantList){this.restaurantList=restaurantList;}
 }

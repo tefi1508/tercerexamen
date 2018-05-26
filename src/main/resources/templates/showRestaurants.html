@@ -157,7 +157,7 @@ th {
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/welcome">TH</a>
+            <a class="navbar-brand" href="/bienvenidos">TH</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -212,7 +212,7 @@ th {
             <td th:text="${restaurant.category.nombre}">
             </td>
             <td>
-                <a th:href="${'/showRestaurantPublic/' + restaurant.id}">Ver</a>
+                <a th:href="${'/showRestaurantAdmin/' + restaurant.id}">Ver</a>
                 <a th:href="${'/editRestaurant/' + restaurant.id}">Editar</a>
                 <a th:href="${'/deleteRestaurant/' + restaurant.id}">Eliminar</a>
             </td>

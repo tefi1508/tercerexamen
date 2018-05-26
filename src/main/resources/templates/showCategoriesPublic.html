@@ -203,9 +203,9 @@ h2{
         </tr>
 
         <tr th:each="cate : ${cateList}">
-            <td th:text="${cate.nombre}">
-            </td>
-
+            <td th:text="${cate.nombre}"></td>
+            <td><a th:href="${'/categorysearch/' + cate.id}">Filtrar</a></td>
+            <br/>
         </tr>
 
 
