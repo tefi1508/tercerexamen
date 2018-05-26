@@ -24,9 +24,9 @@ INSERT INTO city(id, nombre) VALUES (57,'Beni');
 INSERT INTO city(id, nombre) VALUES (58,'Potosi');
 
 
-INSERT INTO restaurant(id, name,phone,description,category_id,city_id) VALUES (50,'Elis',4785698,'Muy bueno',100,50);
-INSERT INTO restaurant(id, name,phone,description,category_id,city_id) VALUES (51,'Burger king',4569823,'Muy bueno igualmente xd',101,50);
-INSERT INTO restaurant(id, name,phone,description,category_id,city_id) VALUES (52,'Tropical Chicken',4965832,'Bueno',101,50);
+INSERT INTO restaurant(id, name,phone,description,likes,category_id,city_id) VALUES (50,'Elis',4785698,'Muy bueno',0,100,50);
+INSERT INTO restaurant(id, name,phone,description,likes,category_id,city_id) VALUES (51,'Burger king',4569823,'Muy bueno igualmente xd',0,101,50);
+INSERT INTO restaurant(id, name,phone,description,likes,category_id,city_id) VALUES (52,'Tropical Chicken',4965832,'Bueno',0,101,50);
 
 
 
