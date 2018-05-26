@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>EditCategory</title>
+    <title>Show</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet"/>
@@ -95,7 +95,7 @@ h2{
 }
 
 .text {
-  background-color: #0000007d;
+  background-color: black;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-size: 20px;
   color: white;
@@ -108,31 +108,62 @@ h2{
     fot-size: 30px;
 }
 
-#editar{
+.up div{
+    display: inline-block;
+    text-align:center;
+}
+
+.down p{
+    text-align:center;
+}
+
+.down h3{
     margin-left:200px;
+    text-align:left;
 }
 
-.text{
-    color: white;
-    font-weight: bold;
+#izquierda{
+    margin-top:0px;
+    margin-left:200px;
+    text-align:left;
 }
 
-.vermas{
-    padding: 10px 25px;
-    color: white;
-    font-size: 20px;
-    background-color: black;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-variant: small-caps;
-    border: none;
+#derecha{
+    margin-right:300px;
+    border:1px solid white;
+    border-radius: 10px;
+    float:right;
+    padding-left:2em;
+    padding-right:8em;
 }
 
-.vermas:hover {
-    color: #D2D4C8 !important;
-    text-decoration: none;
+#derecha h3{
+    text-align:left;
 }
+
+#derecha h4{
+    text-align:left;
+}
+
+
+#derecha p{
+    text-align:center;
+}
+
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
+
 
 </style>
+
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -150,21 +181,51 @@ h2{
         </div>
     </div>
 </nav>
+
 <div class="jumbotron">
     <hr/>
     <h1>TengoHambre</h1>
     <hr/>
-    <h2>Editar Categoria</h2>
-    <div id="editar">
-        <form action="/category" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" th:value="${cate.id}"/>
-            <p>Ingrese nuevo nombre de categoria:</p>
-            <textarea name="nombre" th:text="${cate.nombre}" id="name" cols="30" class="text" rows="3">
-            </textarea>
+    <h2 th:text="${rest.name}"></h2>
+    <div class = "up">
+        <div id = "izquierda">
+            <img th:src="${'/files/' + rest.name + '.jpg'}" height= "400" width= "400" align="middle"/>
+            <p th:text="${rest.photo}"></p>
+            <table>
+                <th><p>Likes:</p></th>
+                <th><p th:text="${rest.likes}"></p></th>
+            </table>
+        </div>
+
+        <div id = "derecha">
+            <h3>Informacion</h3>
             <br/>
-            <input type="submit" value="Guardar" class="vermas"></input>
-        </form>
+            <table>
+                <th><h4>Telefono :</h4></th>
+                <th><h4 th:text="${rest.phone}"></h4></th>
+            </table>
+            <table>
+                <th><h4>Categoria:</h4></th>
+                <th><h4 th:text="${rest.category.nombre}"></h4></th>
+            </table>
+            <table>
+                <th><h4>Ciudad:</h4></th>
+                <th><h4 th:text="${rest.city.nombre}"></h4></th>
+            </table>
+
+            <h4>Descripcion:</h4> <p th:text="${rest.description}"></p>
+        </div>
     </div>
+    <br/>
+    <hr/>
+    <div class = "down">
+        <h3>Comentarios:</h3>
+        <p th:each="comment : ${rest.comments}" >
+            <span th:text="${comment.text}"></span>
+            <br/>
+        </p>
+    </div>
+    <hr/>
 </div>
 </body>
 </html>

@@ -139,6 +139,13 @@ public class RestaurantContoller {
         return "showRestaurantPublic";
     }
 
+    @RequestMapping("/showRestaurantAdmin/{id}")
+    String showRestAdmin(@PathVariable Integer id, Model model) {
+        Restaurant rest = restaurantService.getRestaurant(id);
+        model.addAttribute("rest", rest);
+        return "showRestaurantAdmin";
+    }
+
     @RequestMapping("/deleteRestaurant/{id}")
     String delete(@PathVariable Integer id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
