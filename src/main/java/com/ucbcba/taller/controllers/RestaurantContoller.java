@@ -202,4 +202,12 @@ public class RestaurantContoller {
        return "showRestaurantsPublic";
    }
 
+    @RequestMapping(value="/citysearch/{city_id}")
+    public String buscarCiudad(@PathVariable Integer city_id, Model model){
+        City city=cityService.getCity(city_id);
+        List<Restaurant> resList=city.getRestaurantList();
+        model.addAttribute("restList", resList);
+        return  "showRestaurantsPublic";
+    }
+
 }
