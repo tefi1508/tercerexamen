@@ -31,3 +31,5 @@ INSERT INTO restaurant(id, name,phone,description,category_id,city_id) VALUES (5
 
 
 INSERT INTO user (id,admin,last_name,name,password,username) VALUES (1,1,'b','a','$2a$10$QVUYllnp1PMD4aQN/TDese/L78dN0ABWhnolJl0xmMtmTt.7ajx72','a');
+INSERT INTO user (id,admin,last_name,name,password,username) VALUES (2,0,'b','aa','$2a$10$QVUYllnp1PMD4aQN/TDese/L78dN0ABWhnolJl0xmMtmTt.7ajx72','aa');
+
