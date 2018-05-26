@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.AttributedString;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -182,16 +183,35 @@ public class RestaurantContoller {
 
     @RequestMapping(value="/search/{name}", method = RequestMethod.GET)
     public String buscarRestaurant(@PathVariable("name") String name, Model model){
-        Restaurant restaurant = restaurantService.findRestaurantByName(name);
-        model.addAttribute("restaurant", restaurant);
-        return "redirect:/showRestaurant/"+ restaurant.getId();
+        //Restaurant restaurant = restaurantService.findRestaurantByName(name);
+//        model.addAttribute("restaurant", restaurant);
+//        return "redirect:/showRestaurant/"+ restaurant.getId();
+
+        List<Restaurant> restaurants=(List<Restaurant>)restaurantService.listAllRestaurants();
+        List<Restaurant> aux= new ArrayList<>();
+        for (Restaurant restaurant : restaurants){
+            if (restaurant.getName().contains(name)){
+                aux.add(restaurant);
+            }
+        }
+        model.addAttribute("restList", aux);
+        return "showRestaurantsUser";
     }
 
     @RequestMapping(value="/publicSearch/{name}", method = RequestMethod.GET)
     public String buscarRestaurantPublic(@PathVariable("name") String name, Model model){
-        Restaurant restaurant = restaurantService.findRestaurantByName(name);
-        model.addAttribute("restaurant", restaurant);
-        return "redirect:/showRestaurantPublic/"+ restaurant.getId();
+//        Restaurant restaurant = restaurantService.findRestaurantByName(name);
+//        model.addAttribute("restaurant", restaurant);
+//        return "redirect:/showRestaurantPublic/"+ restaurant.getId();
+        List<Restaurant> restaurants=(List<Restaurant>)restaurantService.listAllRestaurants();
+        List<Restaurant> aux= new ArrayList<>();
+        for (Restaurant restaurant : restaurants){
+            if (restaurant.getName().contains(name)){
+                aux.add(restaurant);
+            }
+        }
+        model.addAttribute("restList", aux);
+        return "showRestaurantsUser";
     }
 
     @RequestMapping(value="/categorysearch/{category_id}")

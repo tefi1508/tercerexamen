@@ -141,7 +141,53 @@ h2{
     color: #D2D4C8;
 }
 
+/*-----Lista Restaurant------*/
+
+.navbar-brand{
+    font-family: 'Julius Sans One', sans-serif;
+    fot-size: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin:5em;
+
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    background-color: #7d1312;
+}
+
+th {
+    background-color: #560000;
+    color: white;
+}
+
+
+/*----Categorias--*/
+
+.dropdown, .dropup {
+
+    display: inline-block;
+}
+
+
+.dropdown-menu li a{
+     background-color: #7d1312;
+     color:white;
+     filter:  alpha(opacity=50);
+}
+
+#bt-categoria{
+    background-color: black;
+     color:white;
+}
+
 </style>
+
 
 <body>
 
@@ -195,6 +241,19 @@ h2{
     <h1>TengoHambre</h1>
     <h2>Restaurantes</h2>
 
+    <div class="dropdown">
+        <button id="bt-categoria" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categorias
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="categorysearch/100">Pizza</a></li>
+            <li><a href="categorysearch/101">Comida Rapida</a></li>
+            <li><a href="categorysearch/102">Heladeria</a></li>
+            <li><a href="categorysearch/103">Comidas exóticas</a></li>
+            <li><a href="categorysearch/104">Pastas</a></li>
+
+        </ul>
+    </div>
+
     <table>
         <tr>
             <th>
@@ -204,7 +263,7 @@ h2{
                 Telefono
             </th>
             <th>
-                Foto
+                Categoria
             </th>
             <th>
                 Opciones
@@ -216,7 +275,7 @@ h2{
             </td>
             <td th:text="${restaurant.phone}">
             </td>
-            <td th:text="${restaurant.photo}">
+            <td th:text="${restaurant.category.nombre}">
             </td>
             <td>
                 <a th:href="${'/showRestaurantPublic/' + restaurant.id}">Ver</a>
