@@ -1,6 +1,9 @@
 package com.ucbcba.taller.services;
 
 import com.ucbcba.taller.entities.Category;
+import com.ucbcba.taller.entities.Restaurant;
+
+import java.util.List;
 
 public interface CategoryService {
     Iterable<Category> listAllCategories();
@@ -10,4 +13,6 @@ public interface CategoryService {
     Category getCategory(Integer id);
 
     void deleteCategory (Integer id);
+
+
 }
