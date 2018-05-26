@@ -15,6 +15,30 @@
             const nombre = document.getElementById("input-buscarRes").value;
             location.href = "/search/"+nombre;
         }
+
+        function pizzaCategory() {
+            location.href = "/categorysearch/"+ 100;
+        }
+
+        function fastfoodCategory() {
+            location.href = "/categorysearch/"+ 101;
+        }
+
+        function icecreamCategory() {
+            location.href = "/categorysearch/"+ 102;
+        }
+
+        function restElis() {
+            location.href = "/showRestaurantPublic/" + 50;
+        }
+
+        function restBK() {
+            location.href = "/showRestaurantPublic/" + 51;
+        }
+
+        function restTC() {
+            location.href = "/showRestaurantPublic/" + 52;
+        }
     </script>
 </head>
 <style>
@@ -125,6 +149,7 @@ h2{
   color: white;
   font-variant: small-caps;
   padding: 16px 32px;
+  cursor: pointer;
 }
 
 .navbar-brand{
@@ -184,59 +209,59 @@ h2{
         <div class="row text-center">
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://bit.ly/2I1nTWK" class="image" alt="Pizza"/>
+                    <img src="https://bit.ly/2I1nTWK" class="image" alt="100"/>
                     <div class="middle">
-                        <div class="text">Pizza</div>
+                        <div class="text" onclick="pizzaCategory()">Pizza</div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://bit.ly/2rC1SD8" class="image" alt="Comida rapida"/>
+                    <img src="https://bit.ly/2rC1SD8" class="image" alt="101"/>
                     <div class="middle">
-                        <div class="text">Comida rapida</div>
+                        <div class="text" onclick="fastfoodCategory()">Comida rapida</div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://bit.ly/2GfReHd" class="image" alt="Heladeria"/>
+                    <img src="https://bit.ly/2GfReHd" class="image" alt="102"/>
                     <div class="middle">
-                        <div class="text">Heladeria</div>
+                        <div class="text" onclick="icecreamCategory()">Heladeria</div>
                     </div>
                 </div>
             </div>
         </div>
-        <li><a class="vermas" href="/showCategories">Ver mas categorias</a></li>
+        <a class="vermas" href="/showCategories">Ver mas categorias</a> <br></br>
         <!-- new row-->
         <div class="row text-center">
             <h2>Restaurantes</h2>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="http://www.bancajoven.com.bo/img/upload/2072017123021_41095.jpg" class="image" alt="Elis"/>
+                    <img src="https://bit.ly/2xh9vF2" class="image" alt="Elis"/>
                     <div class="middle">
-                        <div class="text">Elis</div>
+                        <div class="text" onclick="restElis()">Elis</div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://www.laoistoday.ie/wp-content/uploads/2018/01/Burger-King.jpg" class="image" alt="Burger King"/>
+                    <img src="https://bit.ly/2s9HYA8" class="image" alt="Burger King"/>
                     <div class="middle">
-                        <div class="text">Burger King</div>
+                        <div class="text" onclick="restBK()">Burger King</div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="http://www.tropicalchicken.com.bo/assets/images/content/tc-logo.svg" class="image" alt="Tropical Chicken"/>
+                    <img src="https://bit.ly/2INJiPs" class="image" alt="Tropical Chicken"/>
                     <div class="middle">
-                        <div class="text">Tropical Chicken</div>
+                        <div class="text" onclick="restTC()">Tropical Chicken</div>
                     </div>
                 </div>
             </div>
         </div>
-        <li><a class="vermas" href="/showRestaurants">Ver mas restaurantes</a></li>
+        <a class="vermas" href="/showRestaurants">Ver mas restaurantes</a>
 
     </div>
 </div>
