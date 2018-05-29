@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -106,7 +107,7 @@ h2{
 
 .navbar-brand{
     font-family: 'Julius Sans One', sans-serif;
-    fot-size: 30px;
+    font-size: 30px;
 }
 
 
@@ -124,7 +125,7 @@ table {
     float: none;
     font-family: 'Tajawal', sans-serif;
     letter-spacing: 3px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 th, td {
@@ -188,6 +189,14 @@ tr > .center-glyph{
     color: #D2D4C8 !important;
 }
 
+label{
+    margin-top:3%;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
 </style>
 
 <body>
@@ -216,7 +225,7 @@ tr > .center-glyph{
 
     <div class="dropdown">
         <button id="bt-categoria" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categorias
-            <span class="caret"></span></button> <a href="/newRestaurant" class="plus"><span class="glyphicon glyphicon-plus"></span></a>
+            <span class="caret"></span></button>
         <ul class="dropdown-menu">
             <li><a href="categorysearch/100">Pizza</a></li>
             <li><a href="categorysearch/101">Comida Rapida</a></li>
@@ -265,6 +274,8 @@ tr > .center-glyph{
         </tr>
 
     </table>
+    <label>Añadir restaurant     </label>
+    <a href="/newRestaurant" class="plus"><span class="glyphicon glyphicon-plus"></span></a>
 </div>
 
 </div>
