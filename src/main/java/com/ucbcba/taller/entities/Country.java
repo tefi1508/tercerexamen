@@ -6,8 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class City {
-
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -15,12 +14,8 @@ public class City {
     @NotNull
     private String nombre;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private List<Restaurant> restaurantList;
-
-    @ManyToOne
-    @JoinColumn(name="country_id")
-    private Country country;
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    private List<City> cities;
 
     public Integer getId(){return id;}
 
@@ -30,9 +25,9 @@ public class City {
 
     public void setNombre(String nombre){this.nombre=nombre;}
 
-    public List<Restaurant> getRestaurantList(){return  restaurantList;}
+    public List<City> getCities(){return cities;}
 
-    public void setRestaurantList(List<Restaurant> restaurantList) {
-        this.restaurantList = restaurantList;
+    public void setCities(List<City> cities) {
+        this.cities = cities;
     }
 }

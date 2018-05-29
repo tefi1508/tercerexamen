@@ -12,9 +12,11 @@ INSERT INTO category(id, nombre) VALUES (102, 'Heladeria');
 INSERT INTO category(id, nombre) VALUES (103, 'Comidas exóticas');
 INSERT INTO category(id, nombre) VALUES (104, 'Pastas');
 
+INSERT INTO country(id, nombre) VALUES (1,'Bolivia');
+INSERT INTO country(id, nombre) VALUES (2,'CostaRica');
 
-INSERT INTO city(id, nombre) VALUES (50,'Cochabamba');
-INSERT INTO city(id, nombre) VALUES (51,'La Paz');
+INSERT INTO city(id, nombre, country_id) VALUES (50,'Cochabamba',1);
+INSERT INTO city(id, nombre, country_id) VALUES (51,'La Paz',1);
 INSERT INTO city(id, nombre) VALUES (52,'Santa Cuz');
 INSERT INTO city(id, nombre) VALUES (53,'Chuquisaca');
 INSERT INTO city(id, nombre) VALUES (54,'Oruro');
@@ -22,6 +24,9 @@ INSERT INTO city(id, nombre) VALUES (55,'Pando');
 INSERT INTO city(id, nombre) VALUES (56,'Tarija');
 INSERT INTO city(id, nombre) VALUES (57,'Beni');
 INSERT INTO city(id, nombre) VALUES (58,'Potosi');
+
+INSERT INTO city(id, nombre, country_id) VALUES (59,'SanJose',2);
+INSERT INTO city(id, nombre, country_id) VALUES (60,'Liberia',2);
 
 
 INSERT INTO restaurant(id, name,phone,description,likes,category_id,city_id) VALUES (50,'Elis',4785698,'Muy bueno',0,100,50);

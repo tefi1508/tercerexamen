@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -283,6 +284,31 @@ h2{
     text-decoration: none;
 }
 
+.dropdown, .dropup {
+    display: inline-block;
+}
+
+
+.dropdown-menu li a{
+    background-color: black;
+    font-family: 'Tajawal', sans-serif;
+    font-size:15px;
+    letter-spacing: 3px;
+    color:white;
+    filter: alpha(opacity=50);
+}
+
+#bt-pais{
+
+    background-color: black;
+    background: rgba(0, 0, 0, 0.5);
+    color:white;
+
+    font-family: 'Julius Sans One', sans-serif;
+    letter-spacing: 4px;
+    border: none;
+}
+
 </style>
 
 
@@ -316,6 +342,15 @@ h2{
             </div>
         </div>
     </form>
+
+    <div class="dropdown">
+        <button id="bt-pais" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Paises
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="/countrysearch/1">Bolivia</a></li>
+            <li><a href="/countrysearch/2">Costa Rica</a></li>
+        </ul>
+    </div>
 
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
