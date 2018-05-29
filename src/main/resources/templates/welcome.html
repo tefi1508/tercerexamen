@@ -268,6 +268,21 @@ h2{
     font-weight: normal !important;
 }
 
+.city{
+    padding: 10px 25px;
+    color: white;
+    font-size: 15px;
+    background-color: black;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+.city:hover{
+    color:grey;
+    text-decoration: none;
+}
+
 </style>
 
 
@@ -400,28 +415,41 @@ h2{
         <br/>
         <br/>
         <div class="row text-center">
+
             <h2>Ciudades</h2>
             <br/><br/>
             <div class="col-sm-4">
-                <h2>
-                    <li><a class="cocha" onclick="cochabambaCity()">Cochabamba</a></li><br/>
-                    <li><a class="tarija" onclick="tarijaCity()">Tarija</a></li><br/>
-                    <li><a class="sucre" onclick="sucreCity()">Sucre</a></li>
-                </h2>
+
+                    <a class="city" onclick="cochabambaCity()">Cochabamba</a>
+                    <br/>
+                    <br/>
+                    <a class="city" onclick="tarijaCity()">Tarija</a>
+                    <br/>
+                    <br/>
+                    <a class="city" onclick="sucreCity()">Sucre</a>
+
             </div>
             <div class="col-sm-4">
-                <h2>
-                    <li><a class="santaCruz" onclick="santaCruzCity()">Santa Cruz</a></li><br/>
-                    <li><a class="beni" onclick="beniCity()">Beni</a></li><br/>
-                    <li><a class="pando" onclick="pandoCity()">Pando</a></li>
-                </h2>
+
+                    <a class="city" onclick="santaCruzCity()">Santa Cruz</a>
+                    <br/>
+                    <br/>
+                    <a class="city" onclick="beniCity()">Beni</a>
+                    <br/>
+                    <br/>
+                    <a class="city" onclick="pandoCity()">Pando</a>
+
             </div>
             <div class="col-sm-4">
-                <h2>
-                    <li><a class="laPaz" onclick="laPazCity()">La Paz</a></li><br/>
-                    <li><a class="oruro" onclick="oruroCity()">Oruro</a></li><br/>
-                    <li><a class="potosi" onclick="potosiCity()">Potosi</a></li>
-                </h2>
+
+                    <a class="city" onclick="laPazCity()">La Paz</a>
+                    <br/>
+                    <br/>
+                    <a class="city" onclick="oruroCity()">Oruro</a>
+                    <br/>
+                    <br/>
+                    <a class="city" onclick="potosiCity()">Potosi</a>
+
             </div>
         </div>
 

@@ -104,6 +104,60 @@ h2{
     fot-size: 30px;
 }
 
+/* ------table-----*/
+
+table {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 3px;
+    font-size: 18px;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    background-color: #7d1312;
+    font-weight: normal;
+}
+
+th {
+    background-color: #560000;
+    color: white;
+}
+
+tr > .center-glyph{
+    text-align: center;
+}
+
+.center-glyph a{
+    color: white;
+}
+
+.center-glyph a:hover{
+    color: #D2D4C8 !important;
+}
+
+.plus{
+    margin-top: 2%;
+    color: white;
+}
+
+.plus :hover{
+    color: #D2D4C8 !important;
+}
+
+label{
+    margin-top:3%;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+
 </style>
 
 <body>
@@ -132,19 +186,25 @@ h2{
     <table>
         <tr>
             <th>
+                Id
+            </th>
+            <th>
                 Nombre
             </th>
-
+            <th>
+                Opciones
+            </th>
         </tr>
 
-        <tr th:each="cate : ${cateList}">
-            <td th:text="${cate.nombre}"></td>
-            <td><a th:href="${'/usercategorysearch/' + cate.id}">Filtrar</a></td>
-            <br/>
+        <tr th:each="category : ${cateList}">
+            <td th:text="${category.id}">
+            </td>
+            <td th:text="${category.nombre}">
+            </td>
+            <td><a th:href="${'/usercategorysearch/' + category.id}"> Filtrar </a></td>
         </tr>
-
-
     </table>
+
 </div>
 
 </body>
